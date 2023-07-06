@@ -4,7 +4,7 @@ class MoveableObject {
     img;
 
     moveRight(){
-
+        //code to move right e.g.: x += 10;
     };
 
 }
