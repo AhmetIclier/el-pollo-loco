@@ -21,6 +21,7 @@ class World {
         this.enemies.forEach(enemy => {
             this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
         })
+        
         // draw wird immer wieder aufgerufen
         self = this;
         requestAnimationFrame( () => {
