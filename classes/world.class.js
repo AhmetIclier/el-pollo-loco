@@ -11,7 +11,11 @@ class World {
     ]
 
     background = [
-        new Background('img/5_background/layers/3_third_layer/1.png')
+        // img\5_background\layers\air.png
+        new Background('img/5_background/layers/air.png', 480, 0),
+        new Background('img/5_background/layers/3_third_layer/1.png', 400, 80),
+        new Background('img/5_background/layers/2_second_layer/2.png', 400, 80),
+        new Background('img/5_background/layers/1_first_layer/1.png', 400, 80)
     ]
 
     canvas;
@@ -26,20 +30,10 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-
         this.addObjectsToMap(this.background);
-        
+        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
         this.addObjectsToMap(this.enemies);
-        
         this.addObjectsToMap(this.clouds);
-        
-        // this.enemies.forEach(enemy => {
-        //     this.addToMap(enemy)
-        // })
-        // this.clouds.forEach(cloud => {
-        //     this.addToMap(cloud);
-        // })
 
         // draw wird immer wieder aufgerufen
         self = this;
