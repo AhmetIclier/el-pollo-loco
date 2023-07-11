@@ -11,7 +11,6 @@ class World {
     ]
 
     background = [
-        // img\5_background\layers\air.png
         new Background('img/5_background/layers/air.png', 480, 0),
         new Background('img/5_background/layers/3_third_layer/1.png', 400, 80),
         new Background('img/5_background/layers/2_second_layer/2.png', 400, 80),
