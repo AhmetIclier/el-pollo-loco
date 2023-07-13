@@ -1,7 +1,7 @@
 class Character extends MoveableObject {
+    world;
     height = 200;
     y = 250;
-    world;
     speed = 10;
 
     IMAGES_WALKING = [
@@ -20,7 +20,6 @@ class Character extends MoveableObject {
     }
 
     animate() {
-
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speed;
