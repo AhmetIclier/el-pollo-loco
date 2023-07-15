@@ -2,6 +2,7 @@ class Character extends MoveableObject {
     world;
     height = 200;
     y = 250;
+    x = 100;
     speed = 10;
 
     IMAGES_WALKING = [
