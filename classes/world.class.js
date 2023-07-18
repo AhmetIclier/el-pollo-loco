@@ -1,5 +1,9 @@
 class World {
     character = new Character();
+    canvas;
+    ctx;
+    keyboard;
+
     enemies = [
         new Chicken(),
         new Chicken(),
@@ -17,9 +21,6 @@ class World {
         new Background('img/5_background/layers/1_first_layer/1.png', 400, 80)
     ]
 
-    canvas;
-    ctx;
-    keyboard;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,7 +37,7 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addObjectsToMap(this.background);
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
+        this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
         
@@ -60,6 +61,7 @@ class World {
             this.ctx.translate(mo.width, 0);
             this.ctx.scale(-1, 1);
             mo.x = mo.x * -1;
+            
         }
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
