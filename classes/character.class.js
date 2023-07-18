@@ -2,7 +2,7 @@ class Character extends MoveableObject {
     
     height = 200;
     y = 250;
-    // x = 100;
+    x = 50;
     speed = 10;
     otherDirection;
 
@@ -33,6 +33,7 @@ class Character extends MoveableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
+            this.world.camera_x = -this.x + 50;
         }, 1000/60);
 
         setInterval(() => {

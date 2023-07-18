@@ -3,6 +3,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
     enemies = [
         new Chicken(),
@@ -15,10 +16,15 @@ class World {
     ]
 
     background = [
-        new Background('img/5_background/layers/air.png', 480, 0),
-        new Background('img/5_background/layers/3_third_layer/1.png', 400, 80),
-        new Background('img/5_background/layers/2_second_layer/2.png', 400, 80),
-        new Background('img/5_background/layers/1_first_layer/1.png', 400, 80)
+        new Background('img/5_background/layers/air.png', 480, 0, 0),
+        new Background('img/5_background/layers/3_third_layer/1.png', 400, 80, 0),
+        new Background('img/5_background/layers/2_second_layer/1.png', 400, 80, 0),
+        new Background('img/5_background/layers/1_first_layer/1.png', 400, 80, 0),
+
+        new Background('img/5_background/layers/air.png', 480, 0, 720),
+        new Background('img/5_background/layers/3_third_layer/2.png', 400, 80, 720),
+        new Background('img/5_background/layers/2_second_layer/2.png', 400, 80, 720),
+        new Background('img/5_background/layers/1_first_layer/2.png', 400, 80, 720)
     ]
 
 
@@ -36,11 +42,12 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.background);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
-        
+        this.ctx.translate(-this.camera_x, 0);
         
         // draw wird immer wieder aufgerufen
         self = this;
