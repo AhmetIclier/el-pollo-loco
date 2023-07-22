@@ -2,9 +2,9 @@ class Endboss extends MoveableObject{
     height = 280;
     width = 200;
     x = 1300;
-    y = 200;
+    y = 180;
 
-    BOSS_WALKING = [
+    IMAGES_WALKING = [
         '../img/4_enemie_boss_chicken/1_walk/G1.png',
         '../img/4_enemie_boss_chicken/1_walk/G2.png',
         '../img/4_enemie_boss_chicken/1_walk/G3.png',
@@ -32,7 +32,7 @@ class Endboss extends MoveableObject{
 
     constructor() {
         super().loadImage('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-        this.loadImages(this.BOSS_WALKING);
+        this.loadImages(this.IMAGES_WALKING);
         // this.loadImages(this.BOSS_ANGRY);
         this.animate();
         this.speed =  0.15 + Math.random() * 0.5;
@@ -41,11 +41,7 @@ class Endboss extends MoveableObject{
     animate() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.BOSS_WALKING.length;
-            // durch modulo wird eine endlosschleife an zahlen von 0-5 erzeugt
-            let path = this.BOSS_WALKING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.IMAGES_WALKING);
         }, 150);
     }
     

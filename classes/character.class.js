@@ -27,7 +27,7 @@ class Character extends MoveableObject {
     animate() {
         setInterval(() => {
             this.walkSound.pause();
-            this.walkSound.playbackRate = 15.0;
+            this.walkSound.playbackRate = 5.0;
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speed;
                 this.otherDirection = false;
