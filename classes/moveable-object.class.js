@@ -14,14 +14,16 @@ class MoveableObject {
 
     applyGravity() {
         setInterval(() => {
-            if(this.y < 220) {
+            if(this.aboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-            
         }, 1000/25)
     }
     
+    aboveGround() {
+        return this.y < 220;
+    }
 
     loadImage(path) {
         this.img = new Image();
