@@ -18,7 +18,10 @@ class Chicken extends MoveableObject {
     };
 
     animate() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000/60)
+
         setInterval(() => {
             // durch modulo wird eine endlosschleife an zahlen von 0-5 erzeugt
             this.playAnimation(this.IMAGES_WALKING);

@@ -30,6 +30,18 @@ class MoveableObject {
         this.img.src = path;
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    drawStroke(ctx) {
+        ctx.beginPath();
+        ctx.lineWidth = "3";
+        ctx.strokeStyle = "blue";
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
+    }
+
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -39,10 +51,18 @@ class MoveableObject {
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000/60)
+        this.x -= this.speed;
+        
     }
+
+    moveRight() {
+        this.x += this.speed;
+        
+    }
+
+    jump(){
+        this.speedY = 30;
+    };
 
     playAnimation(IMAGES_WALKING) {
         let i = this.currentImage % IMAGES_WALKING.length;
