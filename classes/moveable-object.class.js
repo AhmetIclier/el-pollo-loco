@@ -8,6 +8,8 @@ class MoveableObject {
     currentImage = 0;
     speed = 0.25;
     otherDirection = false;
+    energy = 100;
+    lastHit = 0;
 
     speedY = 0;
     accelaration = 2.5;
@@ -44,6 +46,32 @@ class MoveableObject {
         }
     }
 
+    isColliding (mo) {
+        return  this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x && 
+            this.y < mo.y + mo.height
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isHurt () {
+        let timePassed = new Date().getTime() - this.lastHit
+        timePassed = timePassed / 1000;
+        return timePassed < 0.3;
+    }
+
+    isDead() {
+        return this.energy <= 0;
+    }
+
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -71,12 +99,5 @@ class MoveableObject {
         let path = IMAGES_WALKING[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-    }
-
-    isColliding (obj) {
-        return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
-        (this.Y + this.offsetY + this.height) >= obj.Y &&
-        (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
-        obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 }
