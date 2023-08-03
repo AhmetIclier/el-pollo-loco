@@ -5,6 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar()
 
 
     constructor(canvas, keyboard) {
@@ -37,9 +38,11 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.background);
         this.addToMap(this.character);
+        this.addToMap(this.statusBar);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
+       
         
         // draw wird immer wieder aufgerufen
         self = this;
