@@ -27,8 +27,8 @@ window.addEventListener('keydown', (event) => {
             keyboard.SPACE = true;
             break;
         case 'KeyD':
-        keyboard.D = true;
-        break;
+            keyboard.D = true;
+            break;
     }
 })
 
