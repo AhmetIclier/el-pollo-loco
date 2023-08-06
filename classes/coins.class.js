@@ -9,7 +9,7 @@ class Coins extends MoveableObject {
         right: 50,
     };
 
-    // Bilder
+    // imgs
     IMAGES_MOVING = [
         './img/8_coin/coin_1.png',
         './img/8_coin/coin_2.png',
