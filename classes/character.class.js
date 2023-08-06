@@ -46,7 +46,8 @@ class Character extends MoveableObject {
 
     world;
     walkSound = new Audio('../audio/walk.mp3');
-    jumpSound = new Audio('../audio/jump.mp3')
+    jumpSound = new Audio('../audio/jump.mp3');
+    deadSound = new Audio('../audio/die.mp3'); // TODO: sound füt toten pepe suchen
     
     constructor() {
         super().loadImage('../img/2_character_pepe/2_walk/W-21.png');
