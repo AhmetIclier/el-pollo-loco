@@ -1,42 +1,153 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
-    <script src="classes/drawable-object.class.js"></script>
-    <script src="classes/moveable-object.class.js"></script>
-    <script src="classes/character.class.js"></script>
-    <script src="classes/status-bar.class.js"></script>
-    <script src="classes/bottleBar.class.js"></script>
-    <script src="classes/coinbar.class.js"></script>
-    <script src="classes/chicken.class.js"></script>
-    <script src="classes/small-chicken.class.js"></script>
-    <script src="classes/cloud.class.js"></script>
-    <script src="classes/salsa-bottle.class.js"></script>
-    <script src="classes/coins.class.js"></script>
-    <script src="classes/world.class.js"></script>
-    
-    
-    
-    
-    <script src="classes/background-object.class.js"></script>
-    
-    <script src="classes/keyboard.class.js"></script>
-    
-    <script src="classes/level.class.js"></script>
-    <script src="classes/endBoss.class.js"></script>
-    <script src="classes/throwable-object.class.js"></script>
-    
-    <script src="levels/level1.js"></script>
-    
-    <script src="js/game.js"></script>
-</head>
-<body onload="init()">
-    <h1>El Pollo Loco</h1>
+    <script src="./classes/drawable-object.class.js"></script>
+    <script src="./classes/moveable-object.class.js"></script>
+    <script src="./classes/character.class.js"></script>
+    <script src="./classes/salsa-bottle.class.js"></script>
+    <script src="./classes/chicken.class.js"></script>
+    <script src="./classes/small-chicken.class.js"></script>
+    <script src="./classes/cloud.class.js"></script>
+    <script src="./classes/background-object.class.js"></script>
+    <script src="./classes/status-bar.class.js"></script>
+    <script src="./classes/coinbar.class.js"></script>
+    <script src="./classes/bottleBar.class.js"></script>
+    <script src="./classes/coins.class.js"></script>
+    <script src="./classes/world.class.js"></script>
+    <script src="./classes/keyboard.class.js"></script>
+    <script src="./classes/throwable-object.class.js"></script>
+    <script src="./classes/level.class.js"></script>
+    <script src="./classes/endboss.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./js/template.js"></script>
+    <script src="./js/game.js"></script>
 
-    <canvas width="720" height="480" id="canvas"></canvas>
+</head>
+
+<body onload="loadScreen()" id="body">
+
+    <div id="loadScreen">
+        <div id="loadScreenHeadSection">
+        <h2 id="loadScreenHeader">EL POLLO LOCO </h2>
+        <img id="loadScreenImage" src="./img/2_character_pepe/3_jump/J-36.png">
+        </div>
+
+        <div class="loader" id="loader">
+            Loading
+        </div>
+    </div>
     
+
+
+
+    <h1 class="d-none" id="header">EL POLLO LOCO</h1>
+
+    <div id="rotatePhone" class="d-none">
+        <img src="./img/rotate.webp">
+        <p id="rotate" class="d-none">Please rotate your device</p>
+    </div>
+
+    <div id="main-game" class="main-game d-none">
+        <div id="main-buttons">
+
+            <div id="buttons">
+                <button onclick="startGame()">Start</button>
+                <button onclick="togglePopup()"> Keys </button>
+            </div>
+
+            <div id="ingameButtons" class="ingameButtons d-none">
+                <div class="ingameBtn" id="background-sound">
+                    <button onclick="muteSound()">
+                        <img src="./img/soundon.png">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="canvas-container">
+            <canvas id="canvas" width="720" height="480">
+
+            </canvas>
+
+            <div id="buttons-for-mobile">
+
+                <div class="walk">
+                    <button id="buttonleft" onclick="mobileTouchControls()"> <img src="./img/leftarrow.png">
+                    </button>
+                    <button id="buttonright" onclick="mobileTouchControls()"> <img src="./img/rightarrow.png">
+                    </button>
+                </div>
+
+                <div class="jump-throw">
+                    <button id="jump" onclick="mobileTouchControls()"> <img src="./img/space.png"> </button>
+                    <button id="throw" onclick="mobileTouchControls()"> <img src="./img/bottle.png"> </button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="start-screen" id="start-screen">
+            <img src="./img/9_intro_outro_screens/start/startscreen_2.png">
+        </div>
+
+        <div id="endScreen" class="end-screen d-none">
+            <img src="./img/9_intro_outro_screens/game_over/game over.png">
+            <div id="stats">
+            </div>
+        </div>
+
+
+        <div id="deadScreen" class="end-screen d-none">
+            <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
+            <p id="restart" class="colloumn">
+                <span class="ingameBtnEnd" onclick="startGame()">Neustart</span>
+                <span class="ingameBtnEnd2" onclick="reload()">Back To Menu</span>
+            </p>
+        </div>
+
+        <div id="control" class="control d-none">
+            <div class="infoControl d-none" id="infoControl">
+                <div class="openControl d-none" id="openControl">
+                    <div id="keys">
+
+                        <div class="colloumn">
+                            <span class="colloumn"> <img src="./img/arrows.png"> <b> WALK </b></span>
+                        </div>
+
+                        <div class="colloumn">
+                            <span class="colloumn"> <img src="./img/letter-d.png"> <b> THROW </b></span>
+                        </div>
+
+                        <div class="colloumn">
+                            <span class="colloumn"> <img src="./img/space.png"> <b> JUMP </b></span>
+                        </div>
+
+                    </div>
+                    <div class="close" onclick="togglePopupClose()" style="cursor: pointer"><span
+                            style="font-size: 24px"> <img src="./img/close.png"> </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
 </body>
+
 </html>

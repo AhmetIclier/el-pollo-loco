@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let soundMuted = false;
 
-//start btn
+// Start Button
 function startGame() {
     initLevel();
     init();
@@ -26,6 +26,7 @@ function setStoppableInterval(fn, time) {
     intervalIds.push(id);
 }
 
+
 function stopGame() {
     intervalIds.forEach(clearInterval);
 }
@@ -40,6 +41,7 @@ function togglePopupClose() {
     document.getElementById('infoControl').classList.add('d-none');
     document.getElementById('openControl').classList.add('d-none');
     document.getElementById('control').classList.add('d-none');
+
 }
 
 function reload() {
@@ -58,6 +60,7 @@ function setSound() {
     }
 }
 
+// Sounds aus
 function muteSound() {
     world.bg_music.volume = 0;
     world.character.snore_sound.volume = 0;
@@ -99,55 +102,67 @@ function playSound() {
     document.getElementById('background-sound').innerHTML = `<button onclick="muteSound()"> <img src="./img/soundon.png"> </button>`;
 }
 
-window.addEventListener('keydown', (event) => {
-    console.log(event);
 
-    switch (event.code) {
-        case 'ArrowUp':
-            keyboard.UP = true;
-            break;
-        case 'ArrowLeft':
-            keyboard.LEFT = true;
-            break;
-        case 'ArrowRight':
-            keyboard.RIGHT = true;
-            break;
-        case 'ArrowDown':
-            keyboard.DOWN = true;
-            break;
-        case 'Space':
-            keyboard.SPACE = true;
-            break;
-        case 'KeyD':
-            keyboard.D = true;
-            break;
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == "38") {
+        keyboard.UP = true;
     }
-})
 
-window.addEventListener('keyup', (event) => {
-    console.log(event);
-
-    switch (event.code) {
-        case 'ArrowUp':
-            keyboard.UP = false;
-            break;
-        case 'ArrowLeft':
-            keyboard.LEFT = false;
-            break;
-        case 'ArrowRight':
-            keyboard.RIGHT = false;
-            break;
-        case 'ArrowDown':
-            keyboard.DOWN = false;
-            break;
-        case 'Space':
-            keyboard.SPACE = false;
-            break;
-        case 'KeyD':
-            keyboard.D = false;
-            break;
+    if (e.keyCode == "40") {
+        keyboard.DOWN = true;
     }
-})
+
+    if (e.keyCode == "37") {
+        keyboard.LEFT = true;
+    }
+
+    if (e.keyCode == "39") {
+        keyboard.RIGHT = true;
+    }
+
+    if (e.keyCode == "32") {
+        keyboard.SPACE = true;
+    }
+
+    if (e.code == "KeyD") {
+        keyboard.D = true;
+    }
+
+    if (e.code == "KeyQ") {
+        keyboard.Q = true;
+    }
+});
+
+
+window.addEventListener("keyup", (e) => {
+    if (e.keyCode == "38") {
+        keyboard.UP = false;
+    }
+
+    if (e.keyCode == "40") {
+        keyboard.DOWN = false;
+    }
+
+    if (e.keyCode == "37") {
+        keyboard.LEFT = false;
+    }
+
+    if (e.keyCode == "39") {
+        keyboard.RIGHT = false;
+    }
+
+    if (e.keyCode == "32") {
+        keyboard.SPACE = false;
+    }
+
+    if (e.code == "KeyD") {
+        keyboard.D = false;
+    }
+
+    if (e.code == "KeyQ") {
+        keyboard.Q = false;
+    }
+});
 
 // Handy touch buttons
 function mobileTouchControls() {
@@ -211,6 +226,7 @@ function mobileButtonThrow(){
         keyboard.D = false;
     });
 }
+
 
 function loadScreen(){
     setTimeout(() => {

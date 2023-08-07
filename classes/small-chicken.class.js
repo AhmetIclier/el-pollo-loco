@@ -29,13 +29,13 @@ class SmallChicken extends MoveableObject {
         this.animate();
     }
 
-    // animation of small chicken
+    // Animation
     animate() {
         this.move = setInterval(() => this.moveLeft(), 1000 / 60);
         this.walking = setInterval(() => this.smallChickenWalking(), 200);
     }
 
-    // small chicken
+    // KLeines Chicken
     smallChickenWalking() {
         if (this.isDead()) {
             this.deadChicken();
@@ -50,7 +50,7 @@ class SmallChicken extends MoveableObject {
         }
     }
 
-    // dead chicken
+    // Totes chICKEN
     deadChicken() {
         setTimeout(() => {
             clearInterval(this.move);

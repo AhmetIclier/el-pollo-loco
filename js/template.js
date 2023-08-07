@@ -14,6 +14,7 @@ function htmlTemplate() {
 
     <div class="canvas-container">
         <canvas id="canvas" width="720" height="480">
+           
         </canvas>
 
         <div id="buttons-for-mobile" >

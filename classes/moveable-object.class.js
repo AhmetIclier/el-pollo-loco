@@ -1,39 +1,47 @@
 class MoveableObject extends DrawableObject {
-    speed = 0.25;
+
+    speed = 0.15;
     otherDirection = false;
+    speedY = 0;
+    acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-    speedY = 0;
-    accelaration = 2.5;
+    groundPos = 150;
+
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    }
 
     applyGravity() {
         setInterval(() => {
-            if(this.aboveGround() || this.speedY > 0) {
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= this.accelaration;
+                this.speedY -= this.acceleration;
             }
-        }, 1000/25)
+        }, 1000 / 35);
     }
-    
-    aboveGround() {
+
+    // Ist nicht auf dem Boden
+    isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.y < 220;
+            return this.y < this.groundPos;
         }
     }
 
-
-
-    
-
-    isColliding (mo) {
-        return  this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x && 
-            this.y < mo.y + mo.height
+    // Checkt Kollision
+    isColliding(mo) {
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    // Treffer
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -43,34 +51,50 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    isHurt () {
-        let timePassed = new Date().getTime() - this.lastHit
-        timePassed = timePassed / 1000;
-        return timePassed < 0.3;
+    // Treffer vom Endboss
+    hitByEndboss() {
+        this.energy -= 10;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     }
 
+    // Verletzt
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; //Time difference in ms
+        timepassed = timepassed / 1000; //Time difference in s
+        return timepassed < 1; //bedeutet: timepassed <5 ist true.
+    }
+
+    // Tot
     isDead() {
-        return this.energy <= 0;
+        return this.energy == 0;
     }
 
-    moveLeft() {
-        this.x -= this.speed;
-        
+    // Animation abspielen
+    playAnimation(images) {
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
     }
 
+    // Rechts
     moveRight() {
         this.x += this.speed;
-        
     }
 
-    jump(){
+    // Links
+    moveLeft() {
+        this.x -= this.speed;
+
+    }
+
+    // Sprug höhe
+    jump() {
         this.speedY = 30;
-    };
-
-    playAnimation(IMAGES_WALKING) {
-        let i = this.currentImage % IMAGES_WALKING.length;
-        let path = IMAGES_WALKING[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
     }
+
 }

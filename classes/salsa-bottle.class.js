@@ -1,4 +1,5 @@
 class SalsaBottle extends MoveableObject {
+
     height = 80;
     width = 80;
     y = 340;
@@ -27,4 +28,7 @@ class SalsaBottle extends MoveableObject {
     animate() {
         setInterval(() => this.playAnimation(this.IMAGES_MOVING), 400);
     }
+
+
+
 }
