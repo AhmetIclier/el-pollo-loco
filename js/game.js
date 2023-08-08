@@ -78,7 +78,7 @@ function muteSound() {
     world.splash_sound.volume = 0;
 
     soundMuted = true;
-    document.getElementById('background-sound').innerHTML = `<button onclick="playSound()"> <img src="./img/soundoff.png"> </button>`;
+    document.getElementById('background-sound').innerHTML = `<button onclick="playSound()"> <img src="./img/mute.svg"> </button>`;
 }
 
 // Sounds an
