@@ -104,14 +104,6 @@ function playSound() {
 
 
 window.addEventListener("keydown", (e) => {
-    if (e.keyCode == "38") {
-        keyboard.UP = true;
-    }
-
-    if (e.keyCode == "40") {
-        keyboard.DOWN = true;
-    }
-
     if (e.keyCode == "37") {
         keyboard.LEFT = true;
     }
@@ -135,13 +127,6 @@ window.addEventListener("keydown", (e) => {
 
 
 window.addEventListener("keyup", (e) => {
-    if (e.keyCode == "38") {
-        keyboard.UP = false;
-    }
-
-    if (e.keyCode == "40") {
-        keyboard.DOWN = false;
-    }
 
     if (e.keyCode == "37") {
         keyboard.LEFT = false;
@@ -235,6 +220,6 @@ function loadScreen(){
         document.getElementById('rotatePhone').classList.remove('d-none');
         document.getElementById('rotate').classList.remove('d-none');
         document.getElementById('loadScreen').classList.add('d-none');
-        document.getElementById('body').classList.add('background-image');
+        document.getElementById('body').classList.add('bg');
     }, 3000);
 };
