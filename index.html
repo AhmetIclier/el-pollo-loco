@@ -8,6 +8,7 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="img/6_salsa_bottle/salsa_bottle.png">
     <script src="./classes/drawable-object.class.js"></script>
     <script src="./classes/moveable-object.class.js"></script>
     <script src="./classes/character.class.js"></script>
@@ -31,41 +32,22 @@
 
 </head>
 
-<body onload="loadScreen()" id="body">
+<body id="body" class="bg">    
 
-    <div id="loadScreen">
-        <div id="loadScreenHeadSection">
-        <h2 id="loadScreenHeader">EL POLLO LOCO </h2>
-        <img id="loadScreenImage" src="./img/2_character_pepe/1_idle/long_idle/I-15.png">
-        </div>
-
-        <div class="loader" id="loader">
-            Waking up Pepe...
-        </div>
-    </div>
     
 
-
-
-    <h1 class="d-none" id="header">EL POLLO LOCO</h1>
-
-    <div id="rotatePhone" class="d-none">
-        <img src="./img/rotate.webp">
-        <p id="rotate" class="d-none">Please rotate your device</p>
-    </div>
-
-    <div id="main-game" class="main-game d-none">
+    <div id="main-game" class="main-game">
         <div id="main-buttons">
 
             <div id="buttons">
                 <button onclick="startGame()">Start</button>
-                <button onclick="togglePopup()"> Keys </button>
+                <button onclick="togglePopup()">Controls</button>
             </div>
 
             <div id="ingameButtons" class="ingameButtons d-none">
                 <div class="ingameBtn" id="background-sound">
                     <button onclick="muteSound()">
-                        <img src="./img/sound.png">
+                        <img src="img/iconmonstr-audio-21.svg">
                     </button>
                 </div>
             </div>
@@ -114,7 +96,7 @@
         <div id="deadScreen" class="end-screen d-none">
             <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
             <p id="restart" class="colloumn">
-                <span class="ingameBtnRestart" onclick="startGame()">Restart</span>
+                <span class="ingameBtnEnd" onclick="startGame()">Restart</span>
                 <span class="ingameBtnEnd2" onclick="reload()">Back To Menu</span>
             </p>
         </div>
@@ -123,31 +105,25 @@
             <div class="infoControl d-none" id="infoControl">
                 <div class="openControl d-none" id="openControl">
                     <div id="keys">
-
                         <div class="colloumn">
                             <span class="colloumn"> <img src="./img/arrow-keys.png"> <b> WALK </b></span>
                         </div>
-
                         <div class="colloumn">
                             <span class="colloumn"> <img src="./img/throw.png"> <b> THROW </b></span>
                         </div>
-
                         <div class="colloumn">
                             <span class="colloumn"> <img src="./img/spacebar.png"> <b> JUMP </b></span>
                         </div>
-
                     </div>
                     <div class="close" onclick="togglePopupClose()" style="cursor: pointer"><span
                             style="font-size: 24px"> <img src="./img/close.svg"> </span>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
-
+        <div id="rotatePhone" class="">
+            <img src="./img/rotate.png">
+            <p id="rotate">Rotate Device to play</p>
+        </div>
 </body>
-
 </html>

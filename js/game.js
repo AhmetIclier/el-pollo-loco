@@ -99,7 +99,7 @@ function playSound() {
     world.endboss.win.volume = 1;
 
     soundMuted = false;
-    document.getElementById('background-sound').innerHTML = `<button onclick="muteSound()"> <img src="./img/soundon.png"> </button>`;
+    document.getElementById('background-sound').innerHTML = `<button onclick="muteSound()"> <img src="./img/iconmonstr-audio-21.svg"> </button>`;
 }
 
 
@@ -211,15 +211,3 @@ function mobileButtonThrow(){
         keyboard.D = false;
     });
 }
-
-
-function loadScreen(){
-    setTimeout(() => {
-        document.getElementById('main-game').classList.remove('d-none');
-        document.getElementById('header').classList.remove('d-none');
-        document.getElementById('rotatePhone').classList.remove('d-none');
-        document.getElementById('rotate').classList.remove('d-none');
-        document.getElementById('loadScreen').classList.add('d-none');
-        document.getElementById('body').classList.add('bg');
-    }, 3000);
-};
