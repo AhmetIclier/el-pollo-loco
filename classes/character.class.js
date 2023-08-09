@@ -84,6 +84,7 @@ class Character extends MoveableObject {
     walking_sound = new Audio('audio/walking.mp3');
     dead_sound = new Audio('audio/dead.mp3');
     snore_sound = new Audio('audio/snore.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -108,12 +109,16 @@ class Character extends MoveableObject {
         this.world.camera_x = -this.x + 100;
         this.walking_sound.playbackRate = 2.5;
         this.walking_sound.pause();
-        if (this.canMoveRight())
+        if (this.canMoveRight()) {
             this.moveRight();
-        if (this.canMoveLeft())
+        }
+        if (this.canMoveLeft()) {
             this.moveLeft();
-        if (this.canJump())
+        }
+        if (this.canJump()) {
             this.jump();
+        }
+            
 
     }
     // Keys
@@ -153,14 +158,13 @@ class Character extends MoveableObject {
         }, 1000 / 30);
     }
 
-    // Character Sprung
     jumpRoutine() {
+        this.jump_sound.play();
         this.smoothJump();
         this.playAnimation(this.IMAGES_JUMPING);
         this.time = 0;
     }
 
-    // Keys
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
     }

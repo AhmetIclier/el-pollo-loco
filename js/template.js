@@ -58,7 +58,7 @@ function htmlTemplate() {
                 <div id="keys">
 
                     <div class="colloumn">
-                        <span class="colloumn"> <img src="./img/arrows.png"> <b> WALK </b></span>
+                        <span class="colloumn"> <img src="./img/arrow-keys.png"> <b> WALK </b></span>
                     </div>
 
                     <div class="colloumn">
@@ -66,7 +66,7 @@ function htmlTemplate() {
                     </div>
 
                     <div class="colloumn">
-                        <span class="colloumn"> <img src="./img/space.png"> <b> JUMP </b></span>
+                        <span class="colloumn"> <img src="./img/spacebar.png"> <b> JUMP </b></span>
                     </div>
 
                 </div>

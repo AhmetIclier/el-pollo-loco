@@ -8,7 +8,7 @@ class Endboss extends MoveableObject {
 
     // Sounds
     endboss_coming = new Audio ('audio/endboss_soundtrack.mp3');
-    end_sound = new Audio('audio/endboss_dead.mp3');
+    end_sound = new Audio('audio/bossdead.mp3');
     win = new Audio ('audio/win.mp3');
 
     offset = {

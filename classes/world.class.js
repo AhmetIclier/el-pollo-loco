@@ -20,11 +20,12 @@ class World {
 
     // Sounds
     coin_sound = new Audio('./audio/coin.mp3');
-    bottle_sound = new Audio('./audio/coin.mp3');
+    bottle_sound = new Audio('./audio/bottlecrack.mp3');
     bg_music = new Audio('./audio/bg-music.mp3');
     dead_chicken = new Audio('./audio/chicken.mp3');
-    endboss_hit = new Audio('./audio/chicken_hit.mp3');
-    splash_sound = new Audio('./audio/splash.mp3');
+    endboss_hit = new Audio('./audio/bosshit.mp3');
+    splash_sound = new Audio('./audio/bottlecrack.mp3');
+    
     pepe_hurt = new Audio('./audio/pepe_hurt.mp3');
 
     killedChicken = 0;
