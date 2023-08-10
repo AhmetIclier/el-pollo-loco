@@ -25,7 +25,6 @@ class World {
     dead_chicken = new Audio('./audio/chicken.mp3');
     endboss_hit = new Audio('./audio/bosshit.mp3');
     splash_sound = new Audio('./audio/bottlecrack.mp3');
-    
     pepe_hurt = new Audio('./audio/pepe_hurt.mp3');
 
     killedChicken = 0;
@@ -136,7 +135,6 @@ class World {
                 this.coinAmount++;
                 this.hideStuff(coin);
                 this.statusBarCoins.setPercentage(this.coinAmount);
-
             }
         }
         );
@@ -179,7 +177,7 @@ class World {
             (this.character.currentAnimation !== 'hurt')
     }
 
-    // Checkt Flaschen Richtung
+    // anpassen der Wurfrichtung
     checkBottleDirection(bottle) {
         if (this.character.otherDirection) {
             bottle.x *= -1;
@@ -188,7 +186,7 @@ class World {
         }
     }
 
-    // Checkt Kollision mit Endboss
+    // hitmarker endboss w/ bottle
     checkCollisionsBottleWithEndboss() {
         this.throwableObjects.forEach((throwableObjects) => {
             if (this.isCollidingEndboss(throwableObjects)) {
@@ -257,10 +255,7 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
-        /*mo.drawFrame(this.ctx);*/
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
 

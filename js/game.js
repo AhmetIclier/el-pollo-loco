@@ -26,7 +26,6 @@ function setStoppableInterval(fn, time) {
     intervalIds.push(id);
 }
 
-
 function stopGame() {
     intervalIds.forEach(clearInterval);
 }
@@ -62,20 +61,20 @@ function setSound() {
 
 // Sounds aus
 function muteSound() {
-    world.bg_music.volume = 0;
-    world.character.snore_sound.volume = 0;
-    world.character.walking_sound.volume = 0;
-    world.character.dead_sound.volume = 0;
-    world.coin_sound.volume = 0;
-    world.bottle_sound.volume = 0;
-    world.dead_chicken.volume = 0;
-    world.endboss_hit.volume = 0;
-    world.pepe_hurt.volume = 0;
-    world.endboss.end_sound.volume = 0;
-    world.bottle_sound.volume = 0;
-    world.endboss.endboss_coming.volume = 0;
-    world.endboss.win.volume = 0;
-    world.splash_sound.volume = 0;
+    world.bg_music.volume = 0; //done
+    world.character.snore_sound.volume = 0;//done
+    world.character.walking_sound.volume = 0;//done
+    world.character.dead_sound.volume = 0;//done
+    world.coin_sound.volume = 0;//done
+    world.bottle_sound.volume = 0;//done
+    world.dead_chicken.volume = 0;//done
+    world.endboss_hit.volume = 0;//done
+    world.pepe_hurt.volume = 0;//done
+    world.endboss.end_sound.volume = 0;//done
+    world.bottle_sound.volume = 0;//done
+    world.endboss.endboss_coming.volume = 0;//done
+    world.endboss.win.volume = 0;//done
+    world.splash_sound.volume = 0;//done
 
     soundMuted = true;
     document.getElementById('background-sound').innerHTML = `<button onclick="playSound()"> <img src="./img/mute.svg"> </button>`;
