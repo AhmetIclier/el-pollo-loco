@@ -211,7 +211,7 @@ class Character extends MoveableObject {
     deathRoutine() {
         this.playAnimation(this.IMAGES_DEAD);
         this.dead_sound.play();
-        this.world.endboss.endboss_coming.pause();
+        this.world.endboss.endboss_coming.volume = 0;
         this.characterFalling();
         stopGame();
         this.showDeadScreen();
@@ -258,6 +258,5 @@ class Character extends MoveableObject {
     showDeadScreen() {
         document.getElementById('deadScreen').classList.remove('d-none');
         this.world.bg_music.pause();
-        this.world.endboss.endboss_coming.pause();
     }
 }

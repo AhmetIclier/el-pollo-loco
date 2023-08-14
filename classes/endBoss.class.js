@@ -107,7 +107,6 @@ class Endboss extends MoveableObject {
         this.speed = this.speed * 2;
       } else if (this.isHurt() && this.energy > 0) {
         this.playAnimation(this.IMAGES_HURT);
-        this.speed = this.speed * 2;
         world.bg_music.pause();
       } else if (this.isDead()) {
         this.playDeadRoutine();
@@ -119,7 +118,7 @@ class Endboss extends MoveableObject {
     }
 
     endbossComing(){
-      if (this.checkFirstContact()) {
+      if (this.checkFirstContact() && this.energy > 10) {
         this.hadFirstContact = true;
         world.bg_music.pause();
         this.endboss_coming.play();
