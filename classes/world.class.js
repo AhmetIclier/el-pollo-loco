@@ -18,7 +18,7 @@ class World {
 
 
 
-    // Sounds
+    // different sounds
     coin_sound = new Audio('./audio/coin.mp3');
     bottle_sound = new Audio('./audio/bottlecrack.mp3');
     bg_music = new Audio('./audio/bg-music.mp3');
@@ -44,11 +44,16 @@ class World {
         this.bg_music.play();
     }
 
-
+    /**
+     * sets world to character
+     */
     setWorld() {
         this.character.world = this;
     }
 
+    /**
+     * checks backgroundactivities like e.g. collisions 
+     */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -60,9 +65,11 @@ class World {
             this.checkCollisionsChickenFromTopChicken();
             this.checkCollisionSmallChicken();
         }, 1000 / 60);
-
     }
 
+    /**
+     * collector for bottles
+     */
     checkThrowObjects() {
         if (this.makeBottleThrowable()) {
             this.bottleRoutine();
@@ -73,10 +80,13 @@ class World {
                     this.throwTime = 0;
                 }
             }, 100);
-
         }
     }
 
+    /**
+     * returns a condition
+     * @returns a condition for bool use
+     */
     makeBottleThrowable() {
         return this.keyboard.D &&
             this.bottleAmount > 0 &&
@@ -93,14 +103,18 @@ class World {
     }
 
 
-    // Checkt Kollision
+    /**
+     * calls multiple collisionchecks between entities
+     */
     checkCollisions() {
         this.checkCollisionsEnemy();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
     }
 
-    // Check Collisions with Enemy
+    /**
+     * Check Collisions with Enemy
+     */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.dead) {
@@ -114,7 +128,9 @@ class World {
         });
     }
 
-    // Check Collisions with Bottle
+    /**
+     * Checks Collisions with Bottle
+     */
     checkCollisionsBottle() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
@@ -122,13 +138,14 @@ class World {
                 this.bottleAmount++;
                 this.hideStuff(bottle);
                 this.statusBarBottles.setPercentage(this.bottleAmount);
-
             }
         }
         );
     }
 
-    // Check Collisions with Coin
+    /**
+     * Checks Collisions with Coin
+     */
     checkCollisionsCoin() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -141,18 +158,21 @@ class World {
         );
     }
 
-    // Kollision von Chicken
+    /**
+     * checks collision with chicken from above
+     */
     checkCollisionsChickenFromTopChicken() {
         this.level.enemies.forEach((enemy) => {
             if (this.isCollidingFromAbove(enemy) && enemy instanceof Chicken) {
                 this.collisionChickenRoutine(enemy);
                 this.killedChicken++;
-
             }
         });
     }
 
-    // Kollision von kleinem Chicken
+    /**
+     * checks collision with chicken from above
+     */
     checkCollisionSmallChicken() {
         this.level.enemies.forEach((enemy) => {
             if (this.isCollidingFromAbove(enemy) && enemy instanceof SmallChicken) {
@@ -163,13 +183,22 @@ class World {
         });
     }
 
+    /**
+     * calles when chicken is hit, plays dead routine
+     * @param {Object} enemy - moveable object
+     */
     collisionChickenRoutine(enemy) {
         enemy.hit();
         enemy.dead = true;
         this.dead_chicken.play();
     }
 
-    // Kollision von Oben
+    
+    /**
+     * Collision from above on enemy
+     * @param {Object} mo moveable object
+     * @returns condition for bool use
+     */
     isCollidingFromAbove(mo) {
         return this.character.isColliding(mo) &&
             this.character.isAboveGround() &&
@@ -178,7 +207,10 @@ class World {
             (this.character.currentAnimation !== 'hurt')
     }
 
-    // anpassen der Wurfrichtung
+    /**
+     * adjusts the throw direction
+     * @param {object} bottle - salsa bottle
+     */
     checkBottleDirection(bottle) {
         if (this.character.otherDirection) {
             bottle.x *= -1;
@@ -187,7 +219,9 @@ class World {
         }
     }
 
-    // hitmarker endboss w/ bottle
+    /**
+     * hitmarker endboss w/ bottle
+     */
     checkCollisionsBottleWithEndboss() {
         this.throwableObjects.forEach((throwableObjects) => {
             if (this.isCollidingEndboss(throwableObjects)) {
@@ -196,21 +230,29 @@ class World {
         });
     }
 
-    // Kollison mit Endboss
+    /**
+     * collision with endboss
+     * @param {Object} throwableObjects - bottle
+     * @returns condition to use as bool
+     */
     isCollidingEndboss(throwableObjects) {
         return this.endboss.isColliding(throwableObjects) &&
             throwableObjects.heigth != 0 &&
             throwableObjects.width != 0
     }
 
-    // Endboss nach Kollision
+    /**
+     * endboss after collision - routine
+     */
     endbossCollisionRoutine() {
         this.endboss.hit();
         this.endboss_hit.play();
         this.collidesWithEndboss = true;
     }
 
-    // Stellt alles dar im Canvas
+    /**
+     * draws everything on canvas
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -237,12 +279,20 @@ class World {
         });
     }
 
+    /**
+     * calls addToMap function for every entity in forEach loop
+     * @param {Object} objects - different entitys
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * draws on canvas
+     * @param {Object} mo - moveable object
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -250,10 +300,13 @@ class World {
         mo.draw(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
-
         }
     }
 
+    /**
+     * mirroring the image of pepe when moves to otherDirection
+     * @param {Object} mo - moveable objects
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -261,11 +314,19 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * flips Pepe back
+     * @param {Object} mo - moveable object
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
+    /**
+     * hides dead chicken etc.
+     * @param {Objects} stuff - different objects
+     */
     hideStuff(stuff) {
         stuff.height = 0;
         stuff.width = 0;

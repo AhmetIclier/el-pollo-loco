@@ -15,6 +15,9 @@ class MoveableObject extends DrawableObject {
         right: 0
     }
 
+    /**
+     * function to build gravity. grows with every loop
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -24,7 +27,10 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 35);
     }
 
-    // Ist nicht auf dem Boden
+    /**
+     * checks if object is above ground
+     * @returns true or false
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -33,7 +39,11 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    // Checkt Kollision
+    /**
+     * checks if there is a collision between 2 or more objects
+     * @param {Object} mo - moveable Object
+     * @returns condition
+     */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -41,7 +51,9 @@ class MoveableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
-    // Treffer
+    /**
+     * lowers the "life" of object
+     */
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -51,7 +63,9 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    // Treffer vom Endboss
+    /**
+     * hit by endboss reduces life double as much as "normal" hit()
+     */
     hitByEndboss() {
         this.energy -= 10;
         if (this.energy < 0) {
@@ -61,19 +75,28 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    // Verletzt
+    /**
+     * function to prevent too spammy plays
+     * @returns bool
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Time difference in ms
         timepassed = timepassed / 1000; //Time difference in s
         return timepassed < 1; //bedeutet: timepassed <5 ist true.
     }
 
-    // Tot
+    /**
+     * status of dead object (char, chick, boss)
+     * @returns energy zero
+     */
     isDead() {
         return this.energy == 0;
     }
 
-    // Animation abspielen
+    /**
+     * animates the images in endless loop with modulo operator
+     * @param {Array} images - of moveable object
+     */
     playAnimation(images) {
             let i = this.currentImage % images.length;
             let path = images[i];
@@ -81,20 +104,24 @@ class MoveableObject extends DrawableObject {
             this.currentImage++;
     }
 
-    // Rechts
+    /**
+     * moves object to the right on canvas
+     */
     moveRight() {
         this.x += this.speed;
     }
 
-    // Links
+    /**
+     * moves object to the left on canvas
+     */
     moveLeft() {
         this.x -= this.speed;
-
     }
 
-    // Sprug höhe
+    /**
+     * defines jumping max height
+     */
     jump() {
         this.speedY = 30;
     }
-
 }

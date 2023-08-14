@@ -11,7 +11,10 @@ level1 = new Level(
 );
 }
 
-// Erstellt Feinde
+/**
+ * creates enemies
+ * @returns array
+ */
 function createLevelEnemies() {
     return [
         new Chicken(),
@@ -25,7 +28,10 @@ function createLevelEnemies() {
     ]
 }
 
-// Erstellt Wolken
+/**
+ * creates clouds in different x-positions
+ * @returns array
+ */
 function createClouds() {
     return [
         new Cloud(500),
@@ -38,7 +44,10 @@ function createClouds() {
     ]
 }
 
-// Hintergrundbilder
+/**
+ * creates background images
+ * @returns array
+ */
 function createBackgroundObjects() {
     return [
         new BackgroundObject("./img/5_background/layers/air.png", -719),
@@ -78,7 +87,10 @@ function createBackgroundObjects() {
     ]
 }
 
-// Erstellt Flaschen
+/**
+ * creates collectible bottles
+ * @returns array
+ */
 function createSalsaBottles() {
     return [
         new SalsaBottle(50),
@@ -94,7 +106,10 @@ function createSalsaBottles() {
     ]
 }
 
-// Erstellt Coins
+/**
+ * creates collectible coins
+ * @returns array
+ */
 function createCoins() {
     return [
         new Coins(50),
@@ -107,6 +122,5 @@ function createCoins() {
         new Coins(200),
         new Coins(250),
         new Coins(250)
-
     ]
 }

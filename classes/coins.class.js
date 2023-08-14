@@ -1,5 +1,4 @@
 class Coins extends MoveableObject {
-
     height = 120;
     width = 120;
 
@@ -10,7 +9,7 @@ class Coins extends MoveableObject {
         right: 50,
     };
 
-    // Bilder
+    // imgs of coin
     IMAGES_MOVING = [
         './img/8_coin/coin_1.png',
         './img/8_coin/coin_2.png',
@@ -24,10 +23,10 @@ class Coins extends MoveableObject {
         this.animate();
     }
 
-    // Animationn
+    /**
+     * animation of coin
+     */
     animate() {
         setInterval(() => this.playAnimation(this.IMAGES_MOVING), 250);
     }
-
-
 }

@@ -1,6 +1,8 @@
 class StatusBar extends DrawableObject {
 
-    // Bilder
+    /**
+     * array of images
+     */
     IMAGES = [
         './img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
         './img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
@@ -20,8 +22,12 @@ class StatusBar extends DrawableObject {
         this.width = 200;
         this.height = 60;
         this.setPercentage(100);
-    }   
+    }  
 
+    /**
+     * checks which of the images from array should be displayed on canvas
+     * @returns number as index of IMAGES array
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
@@ -37,6 +43,4 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-
-
 }

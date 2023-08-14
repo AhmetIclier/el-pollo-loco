@@ -13,7 +13,9 @@ class Character extends MoveableObject {
         right: 30
     }
 
-    // Bilder
+    /**
+     * following arrays in CAPSLOCK are different animation images
+     */
     IMAGES_WALKING = [
         './img/2_character_pepe/2_walk/W-21.png',
         './img/2_character_pepe/2_walk/W-22.png',
@@ -22,9 +24,8 @@ class Character extends MoveableObject {
         './img/2_character_pepe/2_walk/W-25.png',
         './img/2_character_pepe/2_walk/W-26.png'
     ];
-
+    
     IMAGES_JUMPING = [
-
         './img/2_character_pepe/3_jump/J-31.png',
         './img/2_character_pepe/3_jump/J-32.png',
         './img/2_character_pepe/3_jump/J-33.png',
@@ -62,7 +63,6 @@ class Character extends MoveableObject {
         './img/2_character_pepe/1_idle/idle/I-8.png',
         './img/2_character_pepe/1_idle/idle/I-9.png',
         './img/2_character_pepe/1_idle/idle/I-10.png',
-
     ];
 
     IMAGES_LONG_IDLE = [
@@ -80,13 +80,17 @@ class Character extends MoveableObject {
 
     world;
 
-    // Sounds
+    /**
+     * Soundcollection of character Pepe
+     */
     walking_sound = new Audio('audio/walking.mp3');
     dead_sound = new Audio('audio/dead.mp3');
     snore_sound = new Audio('audio/snore.mp3');
     jump_sound = new Audio('./audio/jump.mp3');
     
-
+    /**
+     * calling super() to load functions from movaeable object and start animating 
+     */
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -99,12 +103,17 @@ class Character extends MoveableObject {
         this.animate();
     }
 
-    // Animationsgeschwindigkeit
+    /**
+     * controls animation speed
+     */
     animate() {
         setStoppableInterval(() => this.moveCharacter(), 1000 / 60);
         setStoppableInterval(() => this.playCharacter(), 80);
     }
 
+    /**
+     * moves character to left, right, and jump and cam moves linear to pepe
+     */
     moveCharacter() {
         this.world.camera_x = -this.x + 100;
         this.walking_sound.playbackRate = 2.5;
@@ -121,12 +130,17 @@ class Character extends MoveableObject {
         }
     }
 
-    // Keys
+    /**
+     * function to check of pepe can move left
+     * @returns true or false
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
-    // Rechts laufen
+    /**
+     * calls moveRight method from moveable objects to make play walking_sound move on x-axis
+     */
     moveRight() {
         super.moveRight();
         this.otherDirection = false;
@@ -135,12 +149,17 @@ class Character extends MoveableObject {
         }
     }
 
-    // Keys
+    /**
+     * function to check of pepe can move left
+     * @returns true or false
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > 0
     }
 
-    // Links laufen
+    /**
+     * calls moveLeft method from moveable objects to make play walking_sound move on x-axis
+     */
     moveLeft() {
         super.moveLeft();
         this.otherDirection = true;
@@ -149,6 +168,9 @@ class Character extends MoveableObject {
         }
     }
     
+    /**
+     * function to create a ingame gravity. speed grows(reverted) with time
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -158,17 +180,26 @@ class Character extends MoveableObject {
         }, 1000 / 30);
     }
 
+    /**
+     * function to call smooth jumping animation
+     */
     jumpRoutine() {
         this.smoothJump();
         this.playAnimation(this.IMAGES_JUMPING);
         this.time = 0;
     }
 
+    /**
+     * checks if character is in the air (jumping) or not
+     * @returns true or false
+     */
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
     }
     
-    // Sprung animieren
+    /**
+     * generating a smooth jump animation with timeouts matching to the current image
+     */
     smoothJump(){
         setTimeout(() => {
             this.currentImage = 2;
@@ -191,6 +222,9 @@ class Character extends MoveableObject {
         }, 100);
     }
 
+    /**
+     * function to call different stages of character actions. long AFK, energy zero, hit by opp etc.
+     */
     playCharacter() {
         if (this.isDead()) {
             this.deathRoutine();
@@ -207,7 +241,9 @@ class Character extends MoveableObject {
         }
     }
 
-    // Wenn Character stirbt
+    /**
+     * function is called when Pepe dies (dead-animation of pepe)
+     */
     deathRoutine() {
         this.playAnimation(this.IMAGES_DEAD);
         this.dead_sound.play();
@@ -218,43 +254,59 @@ class Character extends MoveableObject {
     }
 
 
-    // Laufen
+    /**
+     * bool to check if right or left arrowkey is pressed
+     * @returns true or false
+     */
     canWalk() {
         return this.world.keyboard.RIGHT ||
             this.world.keyboard.LEFT
     }
 
-    // Laufen Animation
+    /**
+     * function to animate basic walking
+     */
     walkingRoutine() {
         this.playAnimation(this.IMAGES_WALKING);
         this.time = 0;
         this.snore_sound.pause();
     }
 
-    // Wann Pepe Schläft
+    /**
+     * 
+     * @returns number to call idle routines if needed
+     */
     checkIdleLength() {
         return this.time < 95;
     }
 
-    // Pepe Müde
+    /**
+     * function to animate short AFK animation
+     */
     shortIdleRoutine() {
         this.playAnimation(this.IMAGES_IDLE);
         this.time++;
         this.snore_sound.pause();
     }
 
-    // Pepe Schnarcht
+    /**
+     * plays snore sound if AFK too long
+     */
     longIdleRoutine() {
         this.playAnimation(this.IMAGES_LONG_IDLE);
         this.snore_sound.play();
     }
 
-    // Character fällt runter nach Tod
+    /**
+     * function to make pepe disappear after deatch on y-axis
+     */
     characterFalling() {
         setInterval(() => this.y++, 50);
     }
 
-    // Nach tot
+    /**
+     * shows menu after game over
+     */
     showDeadScreen() {
         document.getElementById('deadScreen').classList.remove('d-none');
         this.world.bg_music.pause();

@@ -6,7 +6,9 @@ class Chicken extends MoveableObject {
     energy = 5;
     dead = false;
 
-    // Bilder
+    /**
+     * following arrays in CAPSLOCK are different animation images
+     */
     IMAGES_WALKING = [
         './img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         './img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -26,7 +28,9 @@ class Chicken extends MoveableObject {
         this.animate();
     }
 
-    // Animationsgeschwindigkeit
+    /**
+     * function to control animationspeed
+     */
     animate() {
         this.move = setInterval(() => this.moveLeft(), 1000 / 60);
 
@@ -45,6 +49,9 @@ class Chicken extends MoveableObject {
         }, 200);
     }
 
+    /**
+     * function calles when chicken dies to clear their movement intervalls
+     */
     deadChicken() {
         setTimeout(() => {
             clearInterval(this.move);

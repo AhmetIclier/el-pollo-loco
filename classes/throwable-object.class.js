@@ -33,7 +33,11 @@ class ThrowableObject extends MoveableObject {
 
 
 
-    // Schmeiss Animation
+    /**
+     * controls the coordinates of thrown object
+     * @param {number} x - coordinate
+     * @param {number} y - coordinate
+     */
     throw(x, y) {
         this.x = x;
         this.y = y;
@@ -42,7 +46,9 @@ class ThrowableObject extends MoveableObject {
         world.throw_sound.play();
     }
 
-    // Animation
+    /**
+     * animating the thrown object
+     */
     animate() {
         this.splash = setInterval(() => {
             if (this.y > 350 || world.collidesWithEndboss) {
@@ -52,11 +58,12 @@ class ThrowableObject extends MoveableObject {
                 this.x += 5;
             }
         }, 1000 / 60);
-
         setInterval(() => world.collidesWithEndboss = false, 100);
     }
 
-    // Nach Kollision mit Objekt
+    /**
+     * animation after collision
+     */
     playCollisionAnimation() {
         this.playAnimation(this.IMAGES_SPLASH);
         this.speedX = 0;

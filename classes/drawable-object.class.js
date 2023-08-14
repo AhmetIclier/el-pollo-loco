@@ -12,11 +12,18 @@ class DrawableObject {
         this.img.src = path;
     }
 
-    // Lädt die BIlder aufs Canvas
+    /**
+     * draws images on canvas
+     * @param {HTMLNode} ctx - context of canvas
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+    /**
+     * function to load every img from array
+     * @param {Array} arr - array with images
+     */
     loadImages(arr) {
         arr.forEach(path => {
 
@@ -27,6 +34,10 @@ class DrawableObject {
         });
     }
     
+    /**
+     * draws stroke around moveable objects, endboss, chicken and throwable objects - shows the hitbox for collisions
+     * @param {HTMLNode} ctx  - context of canvas
+     */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
@@ -37,6 +48,10 @@ class DrawableObject {
         }
     }
 
+    /**
+     * function to set percentage of status bars
+     * @param {number} percentage  - how much filling for the bar
+     */
     // Bild vom jeweiligen Balken
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -44,7 +59,10 @@ class DrawableObject {
         this.img = this.imageCache[path];
     }
 
-    // Prozente des jeweiligen Balken
+    /**
+     * takes percentage of bar filling and returns matchins index for array
+     * @returns number as index for the array of images
+     */
     resolveImageIndex() {
         if (this.percentage == 10) {
             return 5;

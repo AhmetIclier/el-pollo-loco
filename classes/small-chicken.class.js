@@ -7,7 +7,9 @@ class SmallChicken extends MoveableObject {
     energy = 5;
     dead = false;
 
-    // Bilder
+    /**
+     * Arrays of images
+     */
     IMAGES_WALKING = [
         './img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         './img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -29,13 +31,17 @@ class SmallChicken extends MoveableObject {
         this.animate();
     }
 
-    // Animation
+    /**
+     * animates the chicken
+     */
     animate() {
         this.move = setInterval(() => this.moveLeft(), 1000 / 60);
         this.walking = setInterval(() => this.smallChickenWalking(), 200);
     }
 
-    // KLeines Chicken
+    /**
+     * controls in interval if small chicken are alive or not
+     */
     smallChickenWalking() {
         if (this.isDead()) {
             this.deadChicken();
@@ -50,20 +56,13 @@ class SmallChicken extends MoveableObject {
         }
     }
 
-    // Totes chICKEN
+    /**
+     * clears automation of chicken bc. dead
+     */
     deadChicken() {
         setTimeout(() => {
             clearInterval(this.move);
             clearInterval(this.walking);
         }, 200);
-    }
-
-    chickenJump() {
-
-        setInterval(() => {
-            if (!this.isAboveGround) {
-                this.jump();
-            }
-        }, 1000);
     }
 }

@@ -11,7 +11,9 @@ class SalsaBottle extends MoveableObject {
         right: 20,
     };
 
-    // Bilder
+    /**
+     * Array of salsabottle-images
+     */
     IMAGES_MOVING = [
         './img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         './img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
@@ -24,11 +26,10 @@ class SalsaBottle extends MoveableObject {
         this.animate();
     }
 
-    // Animation
+    /**
+     * animates the bottle
+     */
     animate() {
         setInterval(() => this.playAnimation(this.IMAGES_MOVING), 700);
     }
-
-
-
 }
