@@ -104,9 +104,10 @@ class Endboss extends MoveableObject {
     endbossAnimation(){
       if (!this.hadFirstContact) {
         this.playAnimation(this.IMAGES_SPAWNING);
+        this.speed = this.speed * 2;
       } else if (this.isHurt() && this.energy > 0) {
         this.playAnimation(this.IMAGES_HURT);
-        this.speed = this.speed * 1.5;
+        this.speed = this.speed * 2;
         world.bg_music.pause();
       } else if (this.isDead()) {
         this.playDeadRoutine();

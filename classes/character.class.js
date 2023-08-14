@@ -97,7 +97,6 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.applyGravity();
         this.animate();
-        this.jump_sound.loop = false;
     }
 
     // Animationsgeschwindigkeit
@@ -117,8 +116,8 @@ class Character extends MoveableObject {
             this.moveLeft();
         }
         if (this.canJump()) {
-            this.jump();
             this.jump_sound.play();
+            this.jump();
         }
     }
 
@@ -188,7 +187,6 @@ class Character extends MoveableObject {
         }, 300);
 
         setTimeout(() => {
-            
             this.currentImage = 6;
         }, 100);
     }
@@ -213,7 +211,7 @@ class Character extends MoveableObject {
     deathRoutine() {
         this.playAnimation(this.IMAGES_DEAD);
         this.dead_sound.play();
-        this.world.endboss.stopEndbossComingMusic();
+        this.world.endboss.endboss_coming.pause();
         this.characterFalling();
         stopGame();
         this.showDeadScreen();

@@ -95,10 +95,10 @@ function playSound() {
     world.bottle_sound.volume = 0.5;
     world.dead_chicken.volume = 1;
     world.endboss_hit.volume = 1;
-    world.endboss.end_sound.volume = 0.5;
+    world.endboss.end_sound.volume = 0.2;
     world.pepe_hurt.volume = 1;
     world.bottle_sound.volume = 1;
-    world.endboss.endboss_coming.volume = 1;
+    world.endboss.endboss_coming.volume = 0.4;
     world.splash_sound.volume = 1;
     world.endboss.win.volume = 1;
     world.throw_sound.volume = 1;

@@ -349,6 +349,10 @@ button:hover {
 }
 /* ---- SMARTPHONES -------*/
 
+#buttons-for-mobile {
+    opacity: 70%;
+}
+
 @media (max-width: 500px) {
     #main-game {
         display: none;
