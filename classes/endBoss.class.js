@@ -106,6 +106,7 @@ class Endboss extends MoveableObject {
         this.playAnimation(this.IMAGES_SPAWNING);
       } else if (this.isHurt() && this.energy > 0) {
         this.playAnimation(this.IMAGES_HURT);
+        this.speed = this.speed * 1.5;
         world.bg_music.pause();
       } else if (this.isDead()) {
         this.playDeadRoutine();
@@ -117,7 +118,7 @@ class Endboss extends MoveableObject {
     }
 
     endbossComing(){
-      if (this.checkFistContact()) {
+      if (this.checkFirstContact()) {
         this.hadFirstContact = true;
         world.bg_music.pause();
         this.endboss_coming.play();
@@ -145,7 +146,7 @@ class Endboss extends MoveableObject {
     }
 
     // Erster Kontakt
-    checkFistContact() {
+    checkFirstContact() {
         return world.character.x > 3550 ||
             this.energy < 60
     }

@@ -31,13 +31,15 @@ class ThrowableObject extends MoveableObject {
         this.animate();
     }
 
+
+
     // Schmeiss Animation
     throw(x, y) {
         this.x = x;
         this.y = y;
         this.speedY = 30;
         this.applyGravity();
-
+        world.throw_sound.play();
     }
 
     // Animation

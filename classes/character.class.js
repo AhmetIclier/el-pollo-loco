@@ -84,7 +84,8 @@ class Character extends MoveableObject {
     walking_sound = new Audio('audio/walking.mp3');
     dead_sound = new Audio('audio/dead.mp3');
     snore_sound = new Audio('audio/snore.mp3');
-    jump_sound = new Audio('audio/jump.mp3');
+    jump_sound = new Audio('./audio/jump.mp3');
+    
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -96,7 +97,7 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.applyGravity();
         this.animate();
-
+        this.jump_sound.loop = false;
     }
 
     // Animationsgeschwindigkeit
@@ -117,10 +118,10 @@ class Character extends MoveableObject {
         }
         if (this.canJump()) {
             this.jump();
+            this.jump_sound.play();
         }
-            
-
     }
+
     // Keys
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
@@ -159,7 +160,6 @@ class Character extends MoveableObject {
     }
 
     jumpRoutine() {
-        this.jump_sound.play();
         this.smoothJump();
         this.playAnimation(this.IMAGES_JUMPING);
         this.time = 0;
@@ -188,6 +188,7 @@ class Character extends MoveableObject {
         }, 300);
 
         setTimeout(() => {
+            
             this.currentImage = 6;
         }, 100);
     }
@@ -212,6 +213,7 @@ class Character extends MoveableObject {
     deathRoutine() {
         this.playAnimation(this.IMAGES_DEAD);
         this.dead_sound.play();
+        this.world.endboss.stopEndbossComingMusic();
         this.characterFalling();
         stopGame();
         this.showDeadScreen();
@@ -258,5 +260,6 @@ class Character extends MoveableObject {
     showDeadScreen() {
         document.getElementById('deadScreen').classList.remove('d-none');
         this.world.bg_music.pause();
+        this.world.endboss.endboss_coming.pause();
     }
 }

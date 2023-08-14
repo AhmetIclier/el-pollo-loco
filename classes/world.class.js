@@ -26,7 +26,7 @@ class World {
     endboss_hit = new Audio('./audio/bosshit.mp3');
     splash_sound = new Audio('./audio/bottlecrack.mp3');
     pepe_hurt = new Audio('./audio/pepe_hurt.mp3');
-
+    throw_sound = new Audio('./audio/throw.mp3');
     killedChicken = 0;
     killedSmallChicken = 0;
 
@@ -40,6 +40,7 @@ class World {
         this.setWorld();
         this.run();
         this.bg_music.volume = 0.2; // Setzt die Lautstärke auf 20%
+        this.bg_music.loop = true; // plays bg music on loop
         this.bg_music.play();
     }
 
@@ -212,31 +213,22 @@ class World {
     // Stellt alles dar im Canvas
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
-
         this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBarCoins);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBarBottles);
         this.ctx.translate(this.camera_x, 0);
+
 
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

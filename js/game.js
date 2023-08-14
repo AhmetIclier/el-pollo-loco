@@ -65,6 +65,7 @@ function muteSound() {
     world.character.snore_sound.volume = 0;//done
     world.character.walking_sound.volume = 0;//done
     world.character.dead_sound.volume = 0;//done
+    world.character.walking_sound.volume = 0;
     world.coin_sound.volume = 0;//done
     world.bottle_sound.volume = 0;//done
     world.dead_chicken.volume = 0;//done
@@ -75,6 +76,9 @@ function muteSound() {
     world.endboss.endboss_coming.volume = 0;//done
     world.endboss.win.volume = 0;//done
     world.splash_sound.volume = 0;//done
+    world.character.jump_sound = 0; //done
+    world.throw_sound.volume = 0;
+    
 
     soundMuted = true;
     document.getElementById('background-sound').innerHTML = `<button onclick="playSound()"> <img src="./img/mute.svg"> </button>`;
@@ -82,20 +86,22 @@ function muteSound() {
 
 // Sounds an
 function playSound() {
-    world.bg_music.volume = 0.1;
-    world.character.snore_sound.volume = 1;
+    world.bg_music.volume = 0.3;
+    world.character.snore_sound.volume = 0.5;
     world.character.walking_sound.volume = 1;
     world.character.dead_sound.volume = 1;
+    world.character.jump_sound.volume = 1;
     world.coin_sound.volume = 0.5;
     world.bottle_sound.volume = 0.5;
     world.dead_chicken.volume = 1;
     world.endboss_hit.volume = 1;
-    world.endboss.end_sound.volume = 1;
+    world.endboss.end_sound.volume = 0.5;
     world.pepe_hurt.volume = 1;
     world.bottle_sound.volume = 1;
     world.endboss.endboss_coming.volume = 1;
     world.splash_sound.volume = 1;
     world.endboss.win.volume = 1;
+    world.throw_sound.volume = 1;
 
     soundMuted = false;
     document.getElementById('background-sound').innerHTML = `<button onclick="muteSound()"> <img src="./img/iconmonstr-audio-21.svg"> </button>`;
