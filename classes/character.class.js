@@ -125,7 +125,6 @@ class Character extends MoveableObject {
             this.moveLeft();
         }
         if (this.canJump()) {
-            this.jump_sound.play();
             this.jump();
         }
     }
@@ -180,6 +179,8 @@ class Character extends MoveableObject {
         }, 1000 / 30);
     }
 
+
+
     /**
      * function to call smooth jumping animation
      */
@@ -196,6 +197,8 @@ class Character extends MoveableObject {
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
     }
+
+    
     
     /**
      * generating a smooth jump animation with timeouts matching to the current image

@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
     y = 60;
     hadFirstContact = false;
     energy = 60;
+    speed = 1;
 
     // Sounds
     endboss_coming = new Audio("audio/endboss_soundtrack.mp3");
@@ -110,9 +111,9 @@ class Endboss extends MoveableObject {
     endbossAnimation() {
         if (!this.hadFirstContact) {
             this.playAnimation(this.IMAGES_SPAWNING);
-            this.speed = this.speed * 2;
         } else if (this.isHurt() && this.energy > 0) {
             this.playAnimation(this.IMAGES_HURT);
+            this.speed += 1;
             world.bg_music.pause();
         } else if (this.isDead()) {
             this.playDeadRoutine();

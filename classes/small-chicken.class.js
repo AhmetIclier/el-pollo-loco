@@ -27,7 +27,6 @@ class SmallChicken extends MoveableObject {
         this.x = 500 + Math.random() * 3000; // Zahl zwischen 400 und 700
         this.speed = 0.35 + Math.random() * 0.7;
         this.applyGravity();
-        this.chickenJump();
         this.animate();
     }
 

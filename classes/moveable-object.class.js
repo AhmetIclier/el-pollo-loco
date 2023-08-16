@@ -122,6 +122,14 @@ class MoveableObject extends DrawableObject {
      * defines jumping max height
      */
     jump() {
+        if(!soundMuted) {
+            this.jump_sound.volume = 1;
+            this.jump_sound.play();
+        } else {
+            this.jump_sound.volume = 1;
+            
+        }
+        
         this.speedY = 30;
     }
 }

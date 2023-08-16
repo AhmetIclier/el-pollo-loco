@@ -58,7 +58,7 @@ class ThrowableObject extends MoveableObject {
                 this.x += 5;
             }
         }, 1000 / 60);
-        setInterval(() => world.collidesWithEndboss = false, 100);
+        setInterval(() => world.collidesWithEndboss = false, 500);
     }
 
     /**
